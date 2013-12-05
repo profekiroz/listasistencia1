@@ -173,7 +173,9 @@ $(document).ready(function(e){
 			
 			db.transaction(function(ejecutar){
 			var SQL="INSERT INTO Alumnos(No_Control,Nombre,ApellidoP,ApellidoM,Grupo) VALUES(?,?,?,?,?)";
+				alert("Aqui toy")
 				for(var i=0; i<OAlumno.alumnos.length; i++)
+				alert("Aqui now")
 				{
 					ejecutar.executeSql(SQL,[(OAlumno.alumnos[i],No_Control).val(),(OAlumno.alumnos[i],Nombre).val(),(OAlumno.alumnos[i].ApellidoP).val(),(OAlumno.alumnos[i].ApellidoM).val,Gpo],function(){
 						alert("Alumno "+ OAlumno.alumnos[i].Nombre+" agregado");
