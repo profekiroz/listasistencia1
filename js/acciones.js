@@ -166,6 +166,7 @@ $(document).ready(function(e){
   		else
   		{
 	  		alert(msg);
+			var db = openDatabase("Test","1.0","BASE DE PRUEBA",65535);
 			var OAlumno=jQuery.parseJSON(msg);
 			alert(OAlumno.alumnos[0].Nombre); 
 			db.transaction(function(ejecutar){
