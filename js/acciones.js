@@ -168,9 +168,11 @@ $(document).ready(function(e){
 	  		alert(msg);
 			var db = openDatabase("Test","1.0","BASE DE PRUEBA",65535);
 			var OAlumno=jQuery.parseJSON(msg);
+			
 			alert(OAlumno.alumnos[0].Nombre); 
+			
 			db.transaction(function(ejecutar){
-			var SQL="INSERT INTO Alumnos (No_Control,Nombre,ApellidoP,ApellidoM,Grupo)VALUES(?,?,?,?,?)";
+			var SQL="INSERT INTO Alumnos(No_Control,Nombre,ApellidoP,ApellidoM,Grupo) VALUES(?,?,?,?,?)";
 				for(var i=0; i<OAlumno.alumnos.length; i++)
 				{
 					ejecutar.executeSql(SQL,[OAlumno.alumnos[i],No_Control,OAlumno.alumnos[i],Nombre,OAlumno.alumnos[i].ApellidoP,OAlumno.alumnos[i].ApellidoM,Gpo],function(){
