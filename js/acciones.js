@@ -22,7 +22,7 @@ $(document).ready(function(e){
 		$("#Crear").bind("click", function(event){
 			alert("Crear");
 			db.transaction(function(ejecutar){
-    var sql = "CREATE TABLE Alumnos (No_Control VARCHAR(14) NOT NULL PRIMARY KEY AUTOINCREMENT, Nombre VARCHAR(40) NOT NULL, ApellidoP VARCHAR(30) NOT NULL, ApellidoM VARCHAR(30) NOT NULL, Grupo VARCHAR(2) NOT NULL)";
+    var sql = "CREATE TABLE Alumnos (No_Control VARCHAR(14) NOT NULL PRIMARY KEY, Nombre VARCHAR(40) NOT NULL, ApellidoP VARCHAR(30) NOT NULL, ApellidoM VARCHAR(30) NOT NULL, Grupo VARCHAR(2) NOT NULL)";
 				ejecutar.executeSql(sql,undefined, function(){
 					alert("Tabla Alumnos Creada");
 				}, error);
