@@ -161,9 +161,9 @@ $(document).ready(function(e){
 		  }
   		else
   		{
-	  		//alert(msg);
+	  		alert(msg);
 			var OAlumno=jQuery.parseJSON(msg);
-			alert(OAlumno[0].Nombre); 
+			alert(OAlumno.alumnos[0].Nombre); 
 			
   		}
   	});
