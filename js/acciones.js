@@ -22,22 +22,26 @@ $(document).ready(function(e){
 		$("#Crear").bind("click", function(event){
 			alert("Crear");
 			db.transaction(function(ejecutar){
-    var sql = "CREATE TABLE Alumnos (No_Control INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, Nombre VARCHAR(30) NOT NULL, ApellidoP VARCHAR(40) NOT NULL, ApellidoM VARCHAR(40) NOT NULL)";
+    var sql = "CREATE TABLE Alumnos (No_Control VARCHAR(14) NOT NULL PRIMARY KEY AUTOINCREMENT, Nombre VARCHAR(40) NOT NULL, ApellidoP VARCHAR(30) NOT NULL, ApellidoM VARCHAR(30) NOT NULL, Grupo VARCHAR(2) NOT NULL)";
 				ejecutar.executeSql(sql,undefined, function(){
 					alert("Tabla Alumnos Creada");
 				}, error);
-				
-	var sql = "CREATE TABLE Asistencias (No_Control INTEGER NOT NULL, Asistencia VARCHAR(30) NOT NULL, Asignatura VARCHAR(10) NOT NULL, Fecha VARCHAR(40) NOT NULL )";
+			});
+			
+		db.transaction(function(ejecutar){
+	var sql = "CREATE TABLE Asistencias (No_Control VARCHAR(14) NOT NULL, Asistencia integer NOT NULL, Asignatura VARCHAR(10) NOT NULL, Fecha text NOT NULL )";
 				ejecutar.executeSql(sql,undefined, function(){
 					alert("Tabla Asistencias Creada");
 				}, error);			
-				
-	var sql = "CREATE TABLE Asignaturas (Asignatura VARCHAR(10) NOT NULL, NombreA VARCHAR(40) NOT NULL )";
+		});
+		db.transaction(function(ejecutar){
+	var sql = "CREATE TABLE Asignaturas (Asignatura VARCHAR(10) NOT NULL, NombreA Text NOT NULL )";
 				ejecutar.executeSql(sql,undefined, function(){
 					alert("Tabla Asignatura Creada");
 				}, error);			
-			
-	var sql = "CREATE TABLE Grupos (Grupo VARCHAR(10) NOT NULL, Activo Text NOT NULL )";
+		});
+		db.transaction(function(ejecutar){
+	var sql = "CREATE TABLE Grupos (Grupo VARCHAR(2) NOT NULL, Activo Integer NOT NULL, Asignatura VARCHAR(10) NOT NULL )";
 				ejecutar.executeSql(sql,undefined, function(){
 					alert("Tabla Asignatura Creada");
 				}, error);				
@@ -164,8 +168,17 @@ $(document).ready(function(e){
 	  		alert(msg);
 			var OAlumno=jQuery.parseJSON(msg);
 			alert(OAlumno.alumnos[0].Nombre); 
-			
-  		}
+			db.transaction(function(ejecutar){
+			var SQL="INSERT INTO Alumnos (No_Control,Nombre,ApellidoP,ApellidoM,Grupo)VALUES(?,?,?,?,?)";
+				for(var i=0; i<OAlumno.alumnos.length; i++)
+				{
+					ejecutar.executeSql(SQL,[OAlumno.alumnos[i],No_Control,OAlumno.alumnos[i],Nombre,OAlumno.alumnos[i].ApellidoP,OAlumno.alumnos[i].ApellidoM,Gpo],function(){
+						alert("Alumno "+ OAlumno.alumnos[i].Nombre+" agregado");
+					}, function(){ alert ("Error");});
+				}
+			});
+		} //else
+  		
   	});
   }
 		
