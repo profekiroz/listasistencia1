@@ -175,7 +175,7 @@ $(document).ready(function(e){
 			var SQL="INSERT INTO Alumnos(No_Control,Nombre,ApellidoP,ApellidoM,Grupo) VALUES(?,?,?,?,?)";
 				for(var i=0; i<OAlumno.alumnos.length; i++)
 				{
-					ejecutar.executeSql(SQL,[OAlumno.alumnos[i],No_Control,OAlumno.alumnos[i],Nombre,OAlumno.alumnos[i].ApellidoP,OAlumno.alumnos[i].ApellidoM,Gpo],function(){
+					ejecutar.executeSql(SQL,[(OAlumno.alumnos[i],No_Control).val(),(OAlumno.alumnos[i],Nombre).val(),(OAlumno.alumnos[i].ApellidoP).val(),(OAlumno.alumnos[i].ApellidoM).val,Gpo],function(){
 						alert("Alumno "+ OAlumno.alumnos[i].Nombre+" agregado");
 					}, function(){ alert ("Error");});
 				}
